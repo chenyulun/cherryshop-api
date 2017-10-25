@@ -1,3 +1,10 @@
 {
-  "extends": "eslint-config-egg"
+  "parserOptions": {
+    // for es6 module
+    "sourceType": "module"
+  },
+  "extends": "eslint-config-egg",
+  "rules": {
+    "comma-dangle": [2, "never"]
+  }
 }

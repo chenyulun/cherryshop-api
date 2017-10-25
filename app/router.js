@@ -1,5 +1,4 @@
-'use strict';
-
 module.exports = app => {
-  app.get('/', 'home.index');
+  app.get('/', 'index.index');
+  app.get('/user', 'user.index');
 };
