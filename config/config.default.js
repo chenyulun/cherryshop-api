@@ -5,9 +5,10 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1508918526786_9364';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [ 'reqJson' ];
   // add domainWhiteList
   config.security = {
+    csrf: false,
     domainWhiteList: [ '.baidu.com' ]
   };
   // add mongoose
