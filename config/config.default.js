@@ -5,7 +5,10 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1508918526786_9364';
 
   // add your config here
-  config.middleware = [ 'reqJson' ];
+  config.middleware = [ 'reqJson', 'errorHandler', 'notfoundHandler' ];
+  // config.errorHandler = {
+  //   match: '/user'
+  // };
   // add domainWhiteList
   config.security = {
     csrf: false,
@@ -15,6 +18,14 @@ module.exports = appInfo => {
   config.mongoose = {
     url: 'mongodb://127.0.0.1/cherryshop',
     options: {}
+  };
+  config.redis = {
+    client: {
+      port: 6379, // Redis port
+      host: '127.0.0.1', // Redis host
+      password: 'auth',
+      db: 0
+    }
   };
 
   return config;
