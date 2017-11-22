@@ -9,6 +9,9 @@ const config = {
     enable: true,
     package: 'egg-validate'
   },
+  session: {
+    enable: false
+  },
   cors: {
     enable: true,
     package: 'egg-cors'
@@ -16,6 +19,10 @@ const config = {
   redis: {
     enable: true,
     package: 'egg-redis'
+  },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt'
   }
 };
 Object.assign(exports, config);

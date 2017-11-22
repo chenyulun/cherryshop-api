@@ -11,6 +11,7 @@ module.exports = app => {
     //   dataType: 'json'
     // });
   });
+  // app.config.coreMiddleware.unshift('errorHandler');
   app.validator.addRule('jsonString', (rule, value) => {
     try {
       JSON.parse(value);
@@ -32,10 +33,9 @@ module.exports = app => {
     async set(key, value, maxAge) {
       // maxAge not present means session cookies
       // we can't exactly know the maxAge and just set an appropriate value like one day
-      if (!maxAge) maxAge = 24 * 60 * 60 * 1000;
-      throw new Error('response status is not 200');
-      // value = JSON.stringify(value);
-      // await app.redis.set(key, value, 'PX', maxAge);
+      if (!maxAge || maxAge === 'session') maxAge = app.config.session.maxAgeRides || 24 * 60 * 60 * 1000;
+      value = JSON.stringify(value);
+      await app.redis.set(key, value, 'PX', maxAge);
     },
 
     async destroy(key) {

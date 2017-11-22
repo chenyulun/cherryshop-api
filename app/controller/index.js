@@ -1,7 +1,7 @@
 module.exports = app => {
   class HomeController extends app.Controller {
-    async index() {
-      this.ctx.body = 'hi, egg';
+    async index(ctx) {
+      ctx.body = 'hi, egg';
     }
     async add(ctx) {
       let count = ctx.cookies.get('count');
@@ -13,20 +13,8 @@ module.exports = app => {
       ctx.cookies.set('count', null);
       ctx.status = 204;
     }
-    async setSession(ctx) {
-      let n = ctx.session.views || 0;
-      ctx.session.views = ++n;
-      this.logger.info(ctx.session.views);
-      ctx.body = await ctx.session.views + ' views';
-    }
-    async getSession(ctx) {
-      const res = await this.app.redis.get('fLPghNP_wVpFq4RcA-F4gMQceP75V91F');
-      this.logger.info(res);
-      ctx.body = res;
-    }
-    async removeSession(ctx) {
-      ctx.session = null;
-      ctx.body = 'removeSession';
+    async testError(ctx) {
+      ctx.throw(401, 'No authentication token found\n');
     }
 
   }
