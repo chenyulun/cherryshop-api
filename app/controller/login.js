@@ -19,11 +19,14 @@ module.exports = app => {
       this.logger.info(JSON.stringify(body));
       const data = await ctx.model.User.findOne({ userName: ctx.request.body.userName }, '-_id userName password userId');
       if (data) {
-        if (data.password === body.password.trim()) {
+        if (ctx.helper.bcryptHashSync(data.password, body.password.trim())) {
           const userInfo = JSON.parse(JSON.stringify(data));
           delete userInfo.password;
           const token = app.jwt.sign(userInfo, app.config.jwt.secret, { expiresIn: '1h' });
           ctx.body = ctx.helper.succeed({ data: token });
+        } else {
+          ctx.body = ctx.helper.error({ msg: '用户密码错误' });
+          return;
         }
       } else {
         ctx.body = ctx.helper.error({ msg: '用户不存在' });

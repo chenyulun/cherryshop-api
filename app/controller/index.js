@@ -1,7 +1,14 @@
 module.exports = app => {
   class HomeController extends app.Controller {
     async index(ctx) {
-      ctx.body = 'hi, egg';
+      // ctx.body = 'hi, egg';
+      ctx.body = `
+      <form method="POST" action="/upload" enctype="multipart/form-data">
+  title: <input name="title" />
+  file: <input name="file" type="file" />
+  <button type="submit">上传</button>
+</form>
+      `;
     }
     async add(ctx) {
       let count = ctx.cookies.get('count');

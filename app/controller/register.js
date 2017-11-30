@@ -24,6 +24,9 @@ module.exports = app => {
           delete userInfo.password;
           const token = app.jwt.sign(userInfo, app.config.jwt.secret, { expiresIn: '1h' });
           ctx.body = ctx.helper.succeed({ data: token });
+        } else {
+          ctx.body = ctx.helper.error({ msg: '用户密错误' });
+          return;
         }
       } else {
         ctx.body = ctx.helper.error({ msg: '用户不存在' });

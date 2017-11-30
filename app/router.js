@@ -10,4 +10,5 @@ module.exports = app => {
   app.post('/user', 'user.index');
   app.post('/register/createNewUser', 'register.createNewUser');
   app.get('/user/userInfo', 'user.userInfo');
+  app.post('/upload', 'uploader.upload');
 };
