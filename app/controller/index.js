@@ -5,7 +5,7 @@ module.exports = app => {
       ctx.body = `
       <form method="POST" action="/upload" enctype="multipart/form-data">
   title: <input name="title" />
-  file: <input name="file" type="file" />
+  file: <input name="file" type="file"  multiple/>
   <button type="submit">上传</button>
 </form>
       `;
