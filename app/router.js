@@ -11,4 +11,7 @@ module.exports = app => {
   app.post('/register/createNewUser', 'register.createNewUser');
   app.get('/user/userInfo', 'user.userInfo');
   app.post('/upload', 'uploader.upload');
+  app.io.route('chat', app.io.controller.chat.ping);
+  app.io.route('disconnect', app.io.controller.chat.disconnect);
+  app.io.route('connection', app.io.controller.chat.connection);
 };

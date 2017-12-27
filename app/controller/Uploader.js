@@ -3,18 +3,18 @@ const Controller = require('egg').Controller;
 class UploaderController extends Controller {
   async upload() {
     const { ctx, app } = this;
-    const fieldSize = 100;
-    const fileSize = 100;
+    // const fieldSize = 100;
+    const fileSize = '1024000';
     let err = false;
     const errorList = [];
     const parts = ctx.multipart({
-      limits: {
-        fieldNameSize: 100,
-        fieldSize,
-        fields: 10,
-        fileSize,
-        files: 10
-      },
+      // limits: {
+      //   fieldNameSize: 100,
+      //   fieldSize,
+      //   fields: 10,
+      //   fileSize,
+      //   files: 10
+      // },
       /**
        * checkFile函数，自定义检查文件函数，file和field，都执行此函数
        *  file:

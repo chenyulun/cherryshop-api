@@ -32,6 +32,23 @@ module.exports = appInfo => {
       db: 0
     }
   };
+  config.io = {
+    init: {
+      wsEngine: 'uws', // passed to engine.io
+      path: '/user/ws',
+      serveClient: true
+    },
+    namespace: {
+      '/': {
+        connectionMiddleware: [ 'jwt', 'auth' ], //
+        packetMiddleware: [ 'filter' ]
+      }
+    },
+    redis: {
+      host: '127.0.0.1',
+      port: 6379
+    }
+  };
   // config.session = {
   //   key: 'SESSION_ID',
   //   maxAge: 'session', // 前端为当前会话有效
@@ -44,6 +61,17 @@ module.exports = appInfo => {
     enable: true,
     match: '/user'
   };
+  config.multipart = {
+    fileExtensions: [ '.xlsx' ]
+    // fileSize: '50kb'
+  };
+  // config.qiniu = {
+  //   ak: 'v0Q0wgrJwcdIBkWWHb9okzsOHXq60NQ7thYFbusC',
+  //   sk: 'v0cop1JDGYPRFo78_PDLHOu1RSXaZaK9TOPUhTKi',
+  //   // prefix: 'cherryshop',
+  //   buckets: 'cherryshop'
+  // };
+
   // config.onerror = {
   //   all(err, ctx) {
   //     // 在此处定义针对所有响应类型的错误处理方法

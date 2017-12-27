@@ -23,7 +23,15 @@ const config = {
   jwt: {
     enable: true,
     package: 'egg-jwt'
+  },
+  io: {
+    enable: true,
+    package: 'egg-socket.io'
   }
+  // qiniu: {
+  //   enable: true,
+  //   package: 'egg-qiniu'
+  // }
 };
 Object.assign(exports, config);
 
